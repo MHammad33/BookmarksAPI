@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Bookmark, BookmarkSchema } from './schemas/bookmark.schema';
+import { BookmarksService } from './bookmarks/bookmarks.service';
 
 @Module({
   imports: [
@@ -9,6 +10,6 @@ import { Bookmark, BookmarkSchema } from './schemas/bookmark.schema';
     ]),
   ],
   controllers: [],
-  providers: [],
+  providers: [BookmarksService],
 })
 export class BookmarksModule {}
