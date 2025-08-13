@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongoConnectionService } from './db/mongo-connection.service';
+import { BookmarksModule } from './bookmarks/bookmarks.module';
 
 @Module({
   imports: [
@@ -17,6 +18,8 @@ import { MongoConnectionService } from './db/mongo-connection.service';
         uri: configService.get<string>('MONGO_URI'),
       }),
     }),
+
+    BookmarksModule,
   ],
   providers: [AppService, MongoConnectionService],
 })
