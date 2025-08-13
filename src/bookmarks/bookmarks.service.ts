@@ -35,4 +35,12 @@ export class BookmarksService {
     }
     return updatedBookmark;
   }
+
+  async deleteBookmark(id: string): Promise<void> {
+    const result = await this.bookmarkModel.findByIdAndDelete(id).exec();
+    if (!result) {
+      throw new Error(`Bookmark with id ${id} not found`);
+    }
+    return;
+  }
 }
