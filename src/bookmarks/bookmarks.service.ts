@@ -37,6 +37,7 @@ export class BookmarksService {
   }
 
   async deleteBookmark(id: string): Promise<void> {
+    console.log(`Deleting bookmark with id: ${id}`);
     const result = await this.bookmarkModel.findByIdAndDelete(id).exec();
     if (!result) {
       throw new Error(`Bookmark with id ${id} not found`);

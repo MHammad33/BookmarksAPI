@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { BookmarksService } from './bookmarks.service';
 import { Bookmark } from './schemas/bookmark.schema';
 
@@ -25,9 +33,9 @@ export class BookmarksController {
   }
 
   // PUT /bookmarks/:id
-  @Post(':id')
+  @Patch(':id')
   async update(
-    @Body('id') id: string,
+    @Param('id') id: string,
     @Body() data: Partial<Bookmark>,
   ): Promise<Bookmark> {
     return this.bookmarksService.updateBookmark(id, data);
@@ -35,7 +43,8 @@ export class BookmarksController {
 
   // DELETE /bookmarks/:id
   @Delete(':id')
-  async delete(@Body('id') id: string): Promise<void> {
+  async delete(@Param('id') id: string): Promise<void> {
+    console.log(`Request to delete bookmark with id: ${id}`);
     await this.bookmarksService.deleteBookmark(id);
   }
 }
